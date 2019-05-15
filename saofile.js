@@ -54,6 +54,10 @@ module.exports = {
         {
           name: 'Axios',
           value: 'axios'
+        },
+        {
+          name: 'SASS Support',
+          value: 'sass'
         }
       ],
       default: []
@@ -80,11 +84,7 @@ module.exports = {
       name: 'test',
       message: 'Use a custom test framework',
       type: 'list',
-      choices: [
-        'none',
-        'jest',
-        'ava'
-      ],
+      choices: ['none', 'jest', 'ava'],
       default: 'none'
     },
     {
@@ -118,6 +118,7 @@ module.exports = {
     const linter = this.answers.features.includes('linter')
     const prettier = this.answers.features.includes('prettier')
     const axios = this.answers.features.includes('axios')
+    const sass = this.answers.features.includes('sass')
     const esm = this.answers.server === 'none'
 
     return {
@@ -126,27 +127,32 @@ module.exports = {
       eslint: linter ? 'yes' : 'no',
       prettier: prettier ? 'yes' : 'no',
       axios: axios ? 'yes' : 'no',
+      sass: sass ? 'yes' : 'no',
       esm
     }
   },
   actions() {
     const validation = validate(this.answers.name)
-    validation.warnings && validation.warnings.forEach((warn) => {
-      console.warn('Warning:', warn)
-    })
-    validation.errors && validation.errors.forEach((err) => {
-      console.error('Error:', err)
-    })
+    validation.warnings &&
+      validation.warnings.forEach(warn => {
+        console.warn('Warning:', warn)
+      })
+    validation.errors &&
+      validation.errors.forEach(err => {
+        console.error('Error:', err)
+      })
     validation.errors && validation.errors.length && process.exit(1)
 
-    const actions = [{
-      type: 'add',
-      files: '**',
-      templateDir: 'template/nuxt',
-      filters: {
-        'static/icon.png': 'features.includes("pwa")'
+    const actions = [
+      {
+        type: 'add',
+        files: '**',
+        templateDir: 'template/nuxt',
+        filters: {
+          'static/icon.png': 'features.includes("pwa")'
+        }
       }
-    }]
+    ]
 
     if (this.answers.ui !== 'none') {
       actions.push({
