@@ -51,6 +51,7 @@ module.exports = {
   css: [<% if (ui === 'element-ui') { %>
     'element-ui/lib/theme-chalk/index.css'<% } else if (ui === 'tailwind') { %>
     '~/assets/css/tailwind.css'<% } else if (ui === 'vuetify') { %>
+    '~/assets/sass/main.sass'<% } else if (sass === 'yes') { %>
     '~/assets/style/app.styl'<% } else if (ui === 'iview') { %>
     'iview/dist/styles/iview.css'<% } else if (ui === 'ant-design-vue') { %>
     'ant-design-vue/dist/antd.css'<% } else if (ui === 'tachyons') { %>
