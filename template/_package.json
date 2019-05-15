@@ -102,9 +102,9 @@
       "stylus": "^0.54.5",
       "stylus-loader": "^3.0.2"<%
     } %><% if (test !== 'none') { %>,
-      "node-sass": "^3.0.2"<%
+      "node-sass": "^4.12.0"<%
     } %><% if (sass === 'yes') { %>,
-      "sass-loader": "^3.0.2"<%
+      "sass-loader": "^7.1.0"<%
     } %><% if (sass === 'yes') { %>,
       "@vue/test-utils": "^1.0.0-beta.27"<%
     } %><% if (test === 'jest') { %>,
